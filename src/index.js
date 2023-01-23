@@ -14,11 +14,13 @@ const firebaseApp = initializeApp({
 });
 
 //WRITE PBIS DATA
-function writePBISData(date, student, monAcademic, monBehavior, tuesAcademic, tuesBehavior,
+function writePBISData(date, firstName, lastName, monAcademic, monBehavior, tuesAcademic, tuesBehavior,
     wedAcademic, wedBehavior, thursAcademic, thursBehavior, friAcademic, friBehavior, totalAcademic, totalBehavior) {
     const db = getDatabase();
-    const reference = ref(db, 'pbis/' + date + "/" + student);
+    const reference = ref(db, 'pbis/' + date + "/" + firstName + " " + lastName);
     set(reference, {
+        firstName: firstName,
+        lastName: lastName,
         monAcademic: monAcademic,
         monBehavior: monBehavior,
         tuesAcademic: tuesAcademic,
@@ -34,7 +36,21 @@ function writePBISData(date, student, monAcademic, monBehavior, tuesAcademic, tu
     });
 }
 const dt = getNumDate();
-writePBISData(dt, "milo", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Zy", "Currie", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Clayton", "Thompson", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Cameron ", "Hager", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Anthony", "Green", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Jayquan", "Nall", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Gavin ", "Bekeleski", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Kameron", "Crespo", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "AJ", "Sampsel", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Anthony", "Stollings", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Jyden", "Diehl", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Zane", "Wynn", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "David ", "Salser", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Jazmire", "Irby", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Jahle", "Yelton", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
 
 // function writeUserData(users, email, username) {
 //     const db = getDatabase();
@@ -58,7 +74,7 @@ onValue(pbisRef, function(snapshot) {
         var childKey = childSnapshot.key;
         var cd = childSnapshot.val();
 
-        studentObj.push([childKey, childKey, cd.monAcademic, cd.monBehavior, cd.tuesAcademic, cd.tuesBehavior, cd.wedAcademic, cd.wedBehavior, 
+        studentObj.push([cd.firstName, cd.lastName, cd.monAcademic, cd.monBehavior, cd.tuesAcademic, cd.tuesBehavior, cd.wedAcademic, cd.wedBehavior, 
             cd.thursAcademic, cd.thursBehavior, cd.friAcademic, cd.friBehavior, cd.totalAcademic, cd.totalBehavior]);
 
     });

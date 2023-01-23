@@ -7,23 +7,33 @@
 
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="index.js"></script>
-
+    <script type = "text/javascript" src="utils.js"></script>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <div class="topnav" id="myTopnav">
-        <a href="#home" class="active">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
+    <div class="topnav" >
+        <div id="myTopnav">
+            <a href="#home">Home</a>
+            <a href="#res">Resources</a>
+            <a href="#goals" class="active">Goals</a>
+            <a href="#calendar">Class Calendar</a>
+            <a href="#contact">Contact</a>
+            <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    
+        <div class="nav_logo">
+            <img src="../src/images/logo.png" alt="">
+        </div>
+
     </div>
 
 </head>
 <body>
 
-
+    <div class="goals_div">
+        <h1>Student PBIS Goals</h1>
+    </div>
 
     <table id="pbis_table">
             <th rowspan="2">First Name</th>
@@ -50,6 +60,8 @@
             <th>Behavior</th>
         </tr>
     </table>
+
+
     
 </body>
 </html>
