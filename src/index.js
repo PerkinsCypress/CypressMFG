@@ -13,32 +13,28 @@ const firebaseApp = initializeApp({
     measurementId: "G-EE3HJMY6V1"
 });
 
-function writePBISData(date, student, monAcedemic, monBehavior, tuesAcedemic, tuesBehavior,
-    wedAcedemic, wedBehavior, thursAcedemic, thursBehavior, friAcedemic, friBehavior, totalAcedemic, totalBehavior) {
+//WRITE PBIS DATA
+function writePBISData(date, student, monAcademic, monBehavior, tuesAcademic, tuesBehavior,
+    wedAcademic, wedBehavior, thursAcademic, thursBehavior, friAcademic, friBehavior, totalAcademic, totalBehavior) {
     const db = getDatabase();
     const reference = ref(db, 'pbis/' + date + "/" + student);
     set(reference, {
-        monAcedemic: monAcedemic,
+        monAcademic: monAcademic,
         monBehavior: monBehavior,
-        tuesAcedemic: tuesAcedemic,
+        tuesAcademic: tuesAcademic,
         tuesBehavior: tuesBehavior,
-        wedAcedemic: wedAcedemic,
+        wedAcademic: wedAcademic,
         wedBehavior: wedBehavior,
-        thursAcedemic: thursAcedemic,
+        thursAcademic: thursAcademic,
         thursBehavior: thursBehavior,
-        friAcedemic: friAcedemic,
+        friAcademic: friAcademic,
         friBehavior: friBehavior,
-        totalAcedemic: totalAcedemic,
+        totalAcademic: totalAcademic,
         totalBehavior: totalBehavior,
     });
 }
-
-let currentDate = new Date();
-let cDay = currentDate.getDate()
-let cMonth = currentDate.getMonth() + 1
-let cYear = currentDate.getFullYear()
-const dt = parseInt(cMonth + "1" + cDay + "" + cYear);
-writePBISData(dt, "boomer", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+const dt = getNumDate();
+writePBISData(dt, "milo", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 // function writeUserData(users, email, username) {
 //     const db = getDatabase();
@@ -56,61 +52,48 @@ const db = getDatabase();
 //     const data = snapshot.val();
 //     console.log(data);
 // });
-
-
-const pbisRef = ref(db, 'pbis/')
+const pbisRef = ref(db, 'pbis/' + dt);
 onValue(pbisRef, function(snapshot) {
-    studentsArray = snapshot.val();
-   console.log(snapshot.val());
-}, function (error) {
-   console.log("Error: " + error.code);
-});
+    snapshot.forEach(function(childSnapshot) {
+        var childKey = childSnapshot.key;
+        var cd = childSnapshot.val();
 
+        studentObj.push([childKey, childKey, cd.monAcademic, cd.monBehavior, cd.tuesAcademic, cd.tuesBehavior, cd.wedAcademic, cd.wedBehavior, 
+            cd.thursAcademic, cd.thursBehavior, cd.friAcademic, cd.friBehavior, cd.totalAcademic, cd.totalBehavior]);
 
+    });
+    var table = document.getElementById("pbis_table");           
 
- var studentsArray = [["Brad","Perkins", 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    ["Milo","Perkins", 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                ],
-                table = document.getElementById("pbis_table");
-       
-
-
-for(var i = 0; i < studentsArray.length; i++)
+for(var i = 0; i < studentObj.length; i++)
 {
     // create a new row
     var newRow = table.insertRow(table.length);
-    for(var j = 0; j < studentsArray[i].length; j++)
+    for(var j = 0; j < studentObj[i].length; j++)
     {
         // create a new cell
         var cell = newRow.insertCell(j);
         
         // add value to the cell
-        cell.innerHTML = studentsArray[i][j];
+        cell.innerHTML = studentObj[i][j];
     }
 }
 
 
+}, function (error) {
+   console.log("Error: " + error.code);
+
+});
+
+var studentObj = [];
 
 
-// const auth = getAuth(firebaseApp);
-// onAuthStateChanged(auth, user => {
-    // console.log(user.size)
-    // if(user != null){
-    //     console.log("User In");
-    // } else {
-    //     console.log("NO User");
-    // }
-// }); 
-
-
-
-
-// let data = ['Ram', 'Shyam', 'Sita', 'Gita' ];
-// let list = document.getElementById("myList");
-// data.forEach((item)=>{
-//   let li = document.createElement("li");
-//   li.innerText = item;
-//   list.appendChild(li);
-// })
+function getNumDate() {
+    let currentDate = new Date();
+    let cDay = currentDate.getDate();
+    let cMonth = currentDate.getMonth() + 1;
+    let cYear = currentDate.getFullYear();
+    const dt = parseInt(cMonth + "" + cDay + "" + cYear);
+    return dt;
+}
 
 

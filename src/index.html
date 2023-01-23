@@ -5,37 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="styles.css">
     <script type="module" src="index.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div class="topnav" id="myTopnav">
+        <a href="#home" class="active">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
 </head>
 <body>
 
-    <ul id="myList"></ul>
 
-    <!-- <table id="table" border="1">
-        <tr>
-            <th rowspan="4">First Name</th>
-            <th rowspan="4">Last Name</th>
-            <th rowspan="4", colspan="2">Monday</th>
-            <th rowspan="4"colspan="2">Tuesday</th>
-            <th rowspan="4">Wednesday</th>
-            <th rowspan="4">Thursday</th>
-            <th rowspan="4">Friday</th>
-            <th rowspan="4">Week Total</th>
-        </tr>
 
-    </table> -->
-
-    <table id="pbis_table" style="width: 100%; margin-top: 10px; font-size: 0.8em;" border="1px">
-        <tr align="center" >
-            <th style="padding:2.5px; width: 10%;" rowspan="2">First Name</th>
-            <th style="padding:2.5px; width: 10%;" rowspan="2">Last Name</th>
-            <th style="padding:2.5px;" colspan="2">Mon</th>
-            <th style="padding:2.5px;" colspan="2">Tues</th>
-            <th style="padding:2.5px;" colspan="2">Wed</th>
-            <th style="padding:2.5px;" colspan="2">Thurs</th>
-            <th style="padding:2.5px;" colspan="2">Fri</th>
-            <th style="padding:2.5px;" colspan="2">Total</th>
-
+    <table id="pbis_table">
+            <th rowspan="2">First Name</th>
+            <th rowspan="2">Last Name</th>
+            <th colspan="2">Mon</th>
+            <th colspan="2">Tues</th>
+            <th colspan="2">Wed</th>
+            <th colspan="2">Thurs</th>
+            <th colspan="2">Fri</th>
+            <th colspan="2">Total</th>
         </tr>
         <tr>
             <th>Goal</th>
