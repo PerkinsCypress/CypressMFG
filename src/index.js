@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
 import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
-import { getDatabase, onChildChanged, onValue, ref, set } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
+import { getDatabase, onValue, ref, get, set } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyDTzAj3-59m-SkvQImmo3zm94tqTs08G4A",
@@ -13,15 +13,23 @@ const firebaseApp = initializeApp({
     measurementId: "G-EE3HJMY6V1"
 });
 
-
-
-function writePBISData(date, student, acedemic, behavior, other) {
+function writePBISData(date, student, monAcedemic, monBehavior, tuesAcedemic, tuesBehavior,
+    wedAcedemic, wedBehavior, thursAcedemic, thursBehavior, friAcedemic, friBehavior, totalAcedemic, totalBehavior) {
     const db = getDatabase();
     const reference = ref(db, 'pbis/' + date + "/" + student);
     set(reference, {
-        acedemic: acedemic,
-        behavior: behavior,
-        other: other,
+        monAcedemic: monAcedemic,
+        monBehavior: monBehavior,
+        tuesAcedemic: tuesAcedemic,
+        tuesBehavior: tuesBehavior,
+        wedAcedemic: wedAcedemic,
+        wedBehavior: wedBehavior,
+        thursAcedemic: thursAcedemic,
+        thursBehavior: thursBehavior,
+        friAcedemic: friAcedemic,
+        friBehavior: friBehavior,
+        totalAcedemic: totalAcedemic,
+        totalBehavior: totalBehavior,
     });
 }
 
@@ -30,59 +38,42 @@ let cDay = currentDate.getDate()
 let cMonth = currentDate.getMonth() + 1
 let cYear = currentDate.getFullYear()
 const dt = parseInt(cMonth + "1" + cDay + "" + cYear);
-writePBISData(dt, "boomer", 1, 1, 1);
+writePBISData(dt, "boomer", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-
-
-
-
-function writeUserData(users, email, username) {
-    const db = getDatabase();
-    const reference = ref(db, 'users/' + users);
-    set(reference, {
-        username: username,
-        email: email,
-    });
-}
-writeUserData("Brad2", "boomer", "brad@email.com");
-
-
+// function writeUserData(users, email, username) {
+//     const db = getDatabase();
+//     const reference = ref(db, 'users/' + users);
+//     set(reference, {
+//         username: username,
+//         email: email,
+//     });
+// }
+// writeUserData("Brad2", "boomer", "brad@email.com");
 
 const db = getDatabase();
-const userRef = ref(db, 'users/')
-onValue(userRef, (snapshot) =>{
-    const data = snapshot.val();
-    // console.log(data);
-});
+//const userRef = ref(db, 'users/')
+// onValue(userRef, (snapshot) =>{
+//     const data = snapshot.val();
+//     console.log(data);
+// });
 
-var studentsArray = [];
 
-const pbisRef = ref(db, "pbis/");
-onValue(pbisRef, (snapshot) =>{
-    const data = snapshot.val();
-    
-    //parse date into array
-    studentsArray = Object.values(snapshot.val()).map(function(obj) {
-        return obj.data;
-      });
-
-      console.log(data)
-
-    
-
+const pbisRef = ref(db, 'pbis/')
+onValue(pbisRef, function(snapshot) {
+    studentsArray = snapshot.val();
+   console.log(snapshot.val());
+}, function (error) {
+   console.log("Error: " + error.code);
 });
 
 
 
-
-
-     
-
-// var studentsArray = [["Brad","Perkins", 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                 ],
-//                 table = document.getElementById("pbis_table");
+ var studentsArray = [["Brad","Perkins", 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    ["Milo","Perkins", 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                table = document.getElementById("pbis_table");
        
-const table = document.getElementById("pbis_table");
+
 
 for(var i = 0; i < studentsArray.length; i++)
 {
@@ -101,15 +92,15 @@ for(var i = 0; i < studentsArray.length; i++)
 
 
 
-const auth = getAuth(firebaseApp);
-onAuthStateChanged(auth, user => {
+// const auth = getAuth(firebaseApp);
+// onAuthStateChanged(auth, user => {
     // console.log(user.size)
     // if(user != null){
     //     console.log("User In");
     // } else {
     //     console.log("NO User");
     // }
-}); 
+// }); 
 
 
 
