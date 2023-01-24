@@ -39,8 +39,8 @@ const dt = getNumDate();
 writePBISData(1232023, "Zy", "Currie", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "Clayton", "Thompson", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "Cameron ", "Hager", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-writePBISData(1232023, "Anthony", "Green", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-writePBISData(1232023, "Jayquan", "Nall", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Anthony", "Greene", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Jay'quan", "Nall", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "Gavin ", "Bekeleski", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "Kameron", "Crespo", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "AJ", "Sampsel", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -49,7 +49,7 @@ writePBISData(1232023, "Jyden", "Diehl", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "Zane", "Wynn", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "David ", "Salser", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 writePBISData(1232023, "Jazmire", "Irby", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-writePBISData(1232023, "Jahle", "Yelton", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+writePBISData(1232023, "Jah'lea", "Yelton", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 
 // function writeUserData(users, email, username) {
