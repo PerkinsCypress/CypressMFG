@@ -68,7 +68,7 @@ const db = getDatabase();
 //     const data = snapshot.val();
 //     console.log(data);
 // });
-const pbisRef = ref(db, 'pbis/' + dt);
+const pbisRef = ref(db, 'pbis/' + 1232023);
 onValue(pbisRef, function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         var childKey = childSnapshot.key;
