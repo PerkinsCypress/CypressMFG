@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebas
 import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, onValue, ref, get, set } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-const firebaseApp = initializeApp({
+initializeApp({
     apiKey: "AIzaSyDTzAj3-59m-SkvQImmo3zm94tqTs08G4A",
     authDomain: "cypressmfg-2f8d1.firebaseapp.com",
     projectId: "cypressmfg-2f8d1",
