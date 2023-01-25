@@ -24,11 +24,29 @@
     margin-top: 10px;
     margin-right: 20px;
     margin-left: auto;
+    margin-bottom: 10px;
   }
 
   .admin_login input{
     color: #00235D;
     text-align: left;
+    padding: 5px 10px;
+  }
+
+  .admin_login .admin_email_tv .admin_pass_tv{
+    background-color: #fff;
+    border-color: rgb(212, 202, 202);
+    border-radius: 20px;
+  }
+
+  .admin_login .admin_btn{
+    background-color: #F15D22;
+    border-radius: 20px;
+    border-color: #F15D22;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    cursor: pointer;
   }
 
 
@@ -37,7 +55,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  /* padding: 20px; */
+  margin-left: 20px;
+  margin-right: 20px;
   background-color: #fff;
   color: #fff;
   }
@@ -63,9 +83,10 @@
   }
   
   .menu li:hover {
-    background-color: rgb(233, 233, 233);
+    background-color: #f15d2252;
     border-radius: 5px;
     transition: 0.3s ease;
+    border-radius: 20px;
   }
   
   .menu li {
@@ -87,7 +108,7 @@ input[type=checkbox]{
   .hamburger {
     color: #00235D;
     display: none;
-    font-size: 24px;
+    font-size: 32px;
     user-select: none;
   }
   
@@ -96,17 +117,18 @@ input[type=checkbox]{
   .menu { 
     display:none;
     position: absolute;
-    background-color:#fff;;
+    background-color:#fff;
+    border: #00235D;
     right: 0;
     left: 0;
-    margin-top: 16px;
+    margin-top: 20px;
     text-align: center;
     padding: 16px 0;
   }
   
   .menu li:hover {
     display: inline-block;
-    background-color:rgb(233, 233, 233);
+    background-color:#f15d2252;
     transition: 0.3s ease;
   }
   
@@ -128,20 +150,15 @@ input[type=checkbox]{
 
 
 
-
-
-
-
-
+/* Goals Page */
 .goals_div {
   font-size: 28px;
   height: 200px;
   background-image: url('../src/images/industry4.png');
   color: #fff;
   text-align: center;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 20px;
+
 }
 
 
@@ -154,11 +171,11 @@ input[type=checkbox]{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   border-collapse: collapse;
-  width: 100%;
+  width: 97.8%;
   color: #00235D;
   margin-bottom: 100px;
   margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 #pbis_table td, #pbis_table th {

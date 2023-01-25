@@ -63,45 +63,40 @@ writePBISData(1232023, "Jah'lea", "Yelton", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 // writeUserData("Brad2", "boomer", "brad@email.com");
 
 const db = getDatabase();
-//const userRef = ref(db, 'users/')
-// onValue(userRef, (snapshot) =>{
-//     const data = snapshot.val();
-//     console.log(data);
-// });
+const userRef = ref(db, 'users/')
+onValue(userRef, (snapshot) =>{
+    const data = snapshot.val();
+    //c onsole.log(data);
+});
+
+
 const pbisRef = ref(db, 'pbis/' + 1232023);
 onValue(pbisRef, function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         var childKey = childSnapshot.key;
         var cd = childSnapshot.val();
-
         studentObj.push([cd.firstName, cd.lastName, cd.monAcademic, cd.monBehavior, cd.tuesAcademic, cd.tuesBehavior, cd.wedAcademic, cd.wedBehavior, 
             cd.thursAcademic, cd.thursBehavior, cd.friAcademic, cd.friBehavior, cd.totalAcademic, cd.totalBehavior]);
 
     });
+    
     var table = document.getElementById("pbis_table");           
-
-for(var i = 0; i < studentObj.length; i++)
-{
-    // create a new row
-    var newRow = table.insertRow(table.length);
-    for(var j = 0; j < studentObj[i].length; j++)
-    {
-        // create a new cell
-        var cell = newRow.insertCell(j);
-        
-        // add value to the cell
-        cell.innerHTML = studentObj[i][j];
+    for(var i = 0; i < studentObj.length; i++){
+        // create a new row
+        var newRow = table.insertRow(table.length);
+        for(var j = 0; j < studentObj[i].length; j++){
+            // create a new cell
+            var cell = newRow.insertCell(j);
+            // add value to the cell
+            cell.innerHTML = studentObj[i][j];
+        }
     }
-}
-
-
 }, function (error) {
    console.log("Error: " + error.code);
 
 });
 
 var studentObj = [];
-
 
 function getNumDate() {
     let currentDate = new Date();
@@ -111,5 +106,23 @@ function getNumDate() {
     const dt = parseInt(cMonth + "" + cDay + "" + cYear);
     return dt;
 }
+
+
+
+
+
+document.querySelector('.admin_btn').addEventListener("click", clickDemo);
+
+function clickDemo(){
+    //var emailValue = document.getElementById("adminEmail").value;
+    var email = document.querySelector('.admin_email_tv').value;
+    var pass = document.querySelector('.admin_pass_tv').value;
+
+
+}
+
+
+
+const ui =
 
 
