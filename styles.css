@@ -8,17 +8,27 @@
   }
   
   body {
-    font-family: Helvetica,Verdana,Arial,sans-serif;
-    
-    
+    font-family: Helvetica,Verdana,Arial,sans-serif;  
   }
-  
   a {
     text-decoration: none;
   }
   
   li {
     list-style: none;
+  }
+
+  /* Admin Login */
+  .admin_login{
+    width: fit-content;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: auto;
+  }
+
+  .admin_login input{
+    color: #00235D;
+    text-align: left;
   }
 
 
@@ -35,7 +45,7 @@
   .nav-links a {
     color: #fff;
   }
-  
+
   /* LOGO */
   .logo {
     font-size: 32px;
@@ -45,7 +55,6 @@
   .menu {
     display: flex;
     gap: 1em;
-    
     font-size: 18px;
   }
 
@@ -54,7 +63,7 @@
   }
   
   .menu li:hover {
-    background-color: #fff;
+    background-color: rgb(233, 233, 233);
     border-radius: 5px;
     transition: 0.3s ease;
   }
@@ -90,13 +99,14 @@ input[type=checkbox]{
     background-color:#fff;;
     right: 0;
     left: 0;
+    margin-top: 16px;
     text-align: center;
     padding: 16px 0;
   }
   
   .menu li:hover {
     display: inline-block;
-    background-color:#fff;
+    background-color:rgb(233, 233, 233);
     transition: 0.3s ease;
   }
   
