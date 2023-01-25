@@ -121,8 +121,3 @@ function clickDemo(){
 
 }
 
-
-
-const ui =
-
-
