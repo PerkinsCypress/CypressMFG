@@ -1,8 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-import { getAuth, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+import { getAuth, setPersistence, browserLocalPersistence, signInWithRedirect, inMemoryPersistence, onAuthStateChanged,signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword} 
+from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, onValue, ref, get, set } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-initializeApp({
+var firebaseApp = initializeApp({
     apiKey: "AIzaSyDTzAj3-59m-SkvQImmo3zm94tqTs08G4A",
     authDomain: "cypressmfg-2f8d1.firebaseapp.com",
     projectId: "cypressmfg-2f8d1",
@@ -108,16 +109,27 @@ function getNumDate() {
 }
 
 
-
-
-
-document.querySelector('.admin_btn').addEventListener("click", clickDemo);
-
-function clickDemo(){
-    //var emailValue = document.getElementById("adminEmail").value;
+document.querySelector('.admin_btn').addEventListener("click", adminLogin);
+function adminLogin(){
+    ////var emailValue = document.getElementById("adminEmail").value;
     var email = document.querySelector('.admin_email_tv').value;
     var pass = document.querySelector('.admin_pass_tv').value;
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, pass)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user.uid)
+        alert("Welcome Back!");
 
-
+        window.name = "Bla bla bla";
+        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
 }
+
+
 
