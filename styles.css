@@ -18,8 +18,8 @@
     list-style: none;
   }
 
-  /* Admin Login */
-  .admin_login{
+  /* User Login */
+  .user_login{
     width: fit-content;
     margin-top: 10px;
     margin-right: 20px;
@@ -27,19 +27,19 @@
     margin-bottom: 10px;
   }
 
-  .admin_login input{
+  .user_login input{
     color: #00235D;
     text-align: left;
     padding: 5px 10px;
   }
 
-  .admin_login .admin_email_tv .admin_pass_tv{
+  #userPass, #userEmail {
     background-color: #fff;
     border-color: rgb(212, 202, 202);
     border-radius: 20px;
   }
 
-  .admin_login .admin_btn{
+  .user_login .login_btn{
     background-color: #F15D22;
     border-radius: 20px;
     border-color: #F15D22;

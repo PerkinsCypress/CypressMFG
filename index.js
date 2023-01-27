@@ -105,10 +105,10 @@ function getNumDate() {
     return dt;
 }
 
-document.querySelector('.admin_btn').addEventListener("click", adminLogin);
+document.querySelector('.login_btn').addEventListener("click", adminLogin);
 function adminLogin(){
-    var email = document.querySelector('.admin_email_tv').value;
-    var pass = document.querySelector('.admin_pass_tv').value;
+    var email = document.querySelector('.user_email_tv').value;
+    var pass = document.querySelector('.user_pass_tv').value;
     //var emailValue = document.getElementById("adminEmail").value;
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)
@@ -157,13 +157,13 @@ function adminCheck(adminEmail){
             console.log("Is Admin");
 
             sessionStorage.setItem('admin', true);
-            sessionStorage.setItem('adminName', childKey);
+            sessionStorage.setItem('userName', childKey);
             sessionStorage.setItem('email', cd.email);
             sessionStorage.setItem('img', cd.img);
 
             var menu = document.getElementById("menu"); 
             
-            var divsToHide = document.getElementsByClassName("admin_login");
+            var divsToHide = document.getElementsByClassName("user_login");
             for(var i = 0; i < divsToHide.length; i++){
                 divsToHide[i].style.visibility = "hidden"; 
                 divsToHide[i].style.display = "none"; 
