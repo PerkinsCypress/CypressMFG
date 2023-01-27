@@ -1,1 +1,1 @@
-alert(window.name);
+// alert(window.email + " ; " + window.pass);

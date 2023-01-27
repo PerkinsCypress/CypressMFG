@@ -3,7 +3,7 @@ import { getAuth, setPersistence, browserLocalPersistence, signInWithRedirect, i
 from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 import { getDatabase, onValue, ref, get, set } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
 
-var firebaseApp = initializeApp({
+initializeApp({
     apiKey: "AIzaSyDTzAj3-59m-SkvQImmo3zm94tqTs08G4A",
     authDomain: "cypressmfg-2f8d1.firebaseapp.com",
     projectId: "cypressmfg-2f8d1",
@@ -53,15 +53,14 @@ writePBISData(1232023, "Jazmire", "Irby", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 writePBISData(1232023, "Jah'lea", "Yelton", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 
-// function writeUserData(users, email, username) {
+// function writeUserData(users, email) {
 //     const db = getDatabase();
 //     const reference = ref(db, 'users/' + users);
 //     set(reference, {
-//         username: username,
 //         email: email,
 //     });
 // }
-// writeUserData("Brad2", "boomer", "brad@email.com");
+// writeUserData("Brad", "brad@email.com");
 
 const db = getDatabase();
 const userRef = ref(db, 'users/')
@@ -78,9 +77,7 @@ onValue(pbisRef, function(snapshot) {
         var cd = childSnapshot.val();
         studentObj.push([cd.firstName, cd.lastName, cd.monAcademic, cd.monBehavior, cd.tuesAcademic, cd.tuesBehavior, cd.wedAcademic, cd.wedBehavior, 
             cd.thursAcademic, cd.thursBehavior, cd.friAcademic, cd.friBehavior, cd.totalAcademic, cd.totalBehavior]);
-
     });
-    
     var table = document.getElementById("pbis_table");           
     for(var i = 0; i < studentObj.length; i++){
         // create a new row
@@ -108,28 +105,69 @@ function getNumDate() {
     return dt;
 }
 
-
 document.querySelector('.admin_btn').addEventListener("click", adminLogin);
 function adminLogin(){
-    ////var emailValue = document.getElementById("adminEmail").value;
     var email = document.querySelector('.admin_email_tv').value;
     var pass = document.querySelector('.admin_pass_tv').value;
+    //var emailValue = document.getElementById("adminEmail").value;
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
-        console.log(user.uid)
-        alert("Welcome Back!");
+        sessionStorage.setItem('email', email);
+        sessionStorage.setItem('pass', pass);
 
-        window.name = "Bla bla bla";
-        
+        adminCheck(email);
+        // sessionStorage.removeItem('name');
+        // console.log(sessionStorage.getItem('name')); // undefined
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
 }
+
+//Sign in automatically
+if(sessionStorage.getItem('email') != null){
+    var email = sessionStorage.getItem('email');
+    var pass = sessionStorage.getItem('pass');
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, pass)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        adminCheck(email);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+}
+//Add extra menu if is admin
+//Check if user is admin
+function adminCheck(adminEmail){
+    const adminRef = ref(db, 'admins/');
+    onValue(adminRef, function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+        var cd = childSnapshot.val();
+        var childKey = childSnapshot.key;
+        if(adminEmail == cd.email){
+            console.log("Is Admin");
+            sessionStorage.setItem('admin', true);
+            sessionStorage.setItem('adminName', childKey);
+            sessionStorage.setItem('email', cd.email);
+            sessionStorage.setItem('img', cd.img);
+
+            var menu = document.getElementById("menu"); 
+            
+            menu.insertAfter("Class", 'Class', false);
+
+        }
+    });
+    }, function (error) {
+    console.log("Error: " + error.code);
+    });
+}
+
 
 
 
