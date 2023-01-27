@@ -117,6 +117,9 @@ function adminLogin(){
         sessionStorage.setItem('email', email);
         sessionStorage.setItem('pass', pass);
 
+
+
+
         adminCheck(email);
         // sessionStorage.removeItem('name');
         // console.log(sessionStorage.getItem('name')); // undefined
@@ -152,6 +155,7 @@ function adminCheck(adminEmail){
         var childKey = childSnapshot.key;
         if(adminEmail == cd.email){
             console.log("Is Admin");
+
             sessionStorage.setItem('admin', true);
             sessionStorage.setItem('adminName', childKey);
             sessionStorage.setItem('email', cd.email);
@@ -159,7 +163,12 @@ function adminCheck(adminEmail){
 
             var menu = document.getElementById("menu"); 
             
-            menu.insertAfter("Class", 'Class', false);
+            var divsToHide = document.getElementsByClassName("admin_login");
+            for(var i = 0; i < divsToHide.length; i++){
+                divsToHide[i].style.visibility = "hidden"; 
+                divsToHide[i].style.display = "none"; 
+            }
+            
 
         }
     });
