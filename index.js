@@ -180,10 +180,6 @@ function adminCheck(adminEmail){
 
 
             
-            
-
-
-
 
         }
     });
