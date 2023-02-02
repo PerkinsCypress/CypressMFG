@@ -107,8 +107,11 @@ function getNumDate() {
 
 document.querySelector('.admin_btn').addEventListener("click", adminLogin);
 function adminLogin(){
-    var email = document.querySelector('.admin_email_tv').value;
-    var pass = document.querySelector('.admin_pass_tv').value;
+    var email1 = document.querySelector('.admin_email_tv').value;
+    var pass2 = document.querySelector('.admin_pass_tv').value;
+    var email = "bradley.perkins@cypresshigh.org";
+    var pass = "Tinytim99";
+
     //var emailValue = document.getElementById("adminEmail").value;
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, pass)
@@ -118,11 +121,8 @@ function adminLogin(){
         sessionStorage.setItem('pass', pass);
 
 
-
-
         adminCheck(email);
-        // sessionStorage.removeItem('name');
-        // console.log(sessionStorage.getItem('name')); // undefined
+        //sessionStorage.removeItem('name');
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -148,27 +148,42 @@ if(sessionStorage.getItem('email') != null){
 //Add extra menu if is admin
 //Check if user is admin
 function adminCheck(adminEmail){
+    console.log(adminEmail);
     const adminRef = ref(db, 'admins/');
     onValue(adminRef, function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         var cd = childSnapshot.val();
         var childKey = childSnapshot.key;
         if(adminEmail == cd.email){
-            console.log("Is Admin");
-
             sessionStorage.setItem('admin', true);
             sessionStorage.setItem('adminName', childKey);
             sessionStorage.setItem('email', cd.email);
             sessionStorage.setItem('img', cd.img);
 
-            var menu = document.getElementById("menu"); 
-            
-            var divsToHide = document.getElementsByClassName("admin_login");
-            for(var i = 0; i < divsToHide.length; i++){
-                divsToHide[i].style.visibility = "hidden"; 
-                divsToHide[i].style.display = "none"; 
+            console.log("Logged in as: " + cd.email);
+
+            var invisDiv = document.getElementsByClassName("admin_login");
+            for(var i = 0; i < invisDiv.length; i++){
+                invisDiv[i].style.visibility = "hidden"; 
+                invisDiv[i].style.display = "none"; 
             }
+
+            // Add "Logged in as"
+            var visDiv = document.getElementsByClassName("admin_logout");
+            for(var i = 0; i < visDiv.length; i++){
+                visDiv[i].style.setVisibility = "initial"
+                // visDiv[i].style.display = "none"; 
+                 document.getElementById("admin_name").innerHTML = cd.email
+            }
+           
+           
+
+
             
+            
+
+
+
 
         }
     });

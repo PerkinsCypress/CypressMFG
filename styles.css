@@ -49,6 +49,30 @@
     cursor: pointer;
   }
 
+  /* Admin Is Log Out Section*/
+  .admin_logout p{
+    color: #00235D;
+  }
+
+  .admin_logout{
+    width: fit-content;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: auto;
+    margin-bottom: 10px;
+  }
+
+  .admin_Logout_btn{
+    background-color: #F15D22;
+    border-radius: 20px;
+    border-color: #F15D22;
+    margin-left: 18px;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 
 /* NAVBAR STYLING STARTS */
 .navbar {
@@ -98,9 +122,9 @@
     position: relative; 
   }
 
-/*RESPONSIVE NAVBAR MENU STARTS*/
-/* CHECKBOX HACK */
-input[type=checkbox]{
+  /*RESPONSIVE NAVBAR MENU STARTS*/
+  /* CHECKBOX HACK */
+  input[type=checkbox]{
     display: none;
   } 
   
