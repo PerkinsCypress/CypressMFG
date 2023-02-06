@@ -69,7 +69,6 @@ onValue(userRef, (snapshot) =>{
     //c onsole.log(data);
 });
 
-
 const pbisRef = ref(db, 'pbis/' + 1232023);
 onValue(pbisRef, function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
@@ -105,29 +104,57 @@ function getNumDate() {
     return dt;
 }
 
-document.querySelector('.admin_btn').addEventListener("click", adminLogin);
+// //admin_logout
+var isAdmin = sessionStorage.getItem('admin');
+console.log(document.querySelector('#admin_btn').value)
+if(isAdmin){
+    showAdminLogout()
+    // document.querySelector('#admin_btn').value = 'Logout';
+} else{
+    hideAdminLogout()
+    // document.querySelector('#admin_btn').value = 'Login';
+}
+
+var isAdmin = sessionStorage.getItem('admin');
+//Login Admin/ Logout
+$('.admin_btn').on("click", adminLogin);
 function adminLogin(){
-    var email1 = document.querySelector('.admin_email_tv').value;
-    var pass2 = document.querySelector('.admin_pass_tv').value;
-    var email = "bradley.perkins@cypresshigh.org";
-    var pass = "Tinytim99";
+    if(document.querySelector('#admin_btn').value == 'Logout'){
+        adminLogout()  
+    }else{
+        var email = document.querySelector('.admin_email_tv').value;
+        var pass = document.querySelector('.admin_pass_tv').value;
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, pass)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            sessionStorage.setItem('email', email);
+            sessionStorage.setItem('pass', pass);
+            adminCheck(email);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+    }
+}
 
-    //var emailValue = document.getElementById("adminEmail").value;
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, pass)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        sessionStorage.setItem('email', email);
-        sessionStorage.setItem('pass', pass);
-
-
-        adminCheck(email);
-        //sessionStorage.removeItem('name');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+//Logout Admin
+function adminLogout(){
+    const confirm = window.confirm("Are you sure you want to Logout?");
+    if(confirm){
+        sessionStorage.setItem('admin', null);
+        sessionStorage.setItem('adminName', null);
+        sessionStorage.setItem('email', null);
+        sessionStorage.setItem('img', null);
+        location.reload();
+        document.querySelector('#admin_btn').value = 'Login';
+        console.log(isAdmin + " : adminLogout()");
+       
+    }else{
+        // window.location.href = "index.html";
+        // document.querySelector('#admin_btn').value = 'Logout';
+    }
 }
 
 //Sign in automatically
@@ -143,12 +170,10 @@ if(sessionStorage.getItem('email') != null){
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-      });
+    });
 }
-//Add extra menu if is admin
-//Check if user is admin
+//Check if user is admin / Switch to logout button/ hide forms
 function adminCheck(adminEmail){
-    console.log(adminEmail);
     const adminRef = ref(db, 'admins/');
     onValue(adminRef, function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
@@ -160,27 +185,13 @@ function adminCheck(adminEmail){
             sessionStorage.setItem('email', cd.email);
             sessionStorage.setItem('img', cd.img);
 
-            console.log("Logged in as: " + cd.email);
-
-            var invisDiv = document.getElementsByClassName("admin_login");
-            for(var i = 0; i < invisDiv.length; i++){
-                invisDiv[i].style.visibility = "hidden"; 
-                invisDiv[i].style.display = "none"; 
-            }
-
-            // Add "Logged in as"
-            var visDiv = document.getElementsByClassName("admin_logout");
-            for(var i = 0; i < visDiv.length; i++){
-                visDiv[i].style.setVisibility = "initial"
-                // visDiv[i].style.display = "none"; 
-                 document.getElementById("admin_name").innerHTML = cd.email
-            }
-           
-           
-
-
-            
-
+            document.querySelector('#admin_btn').value = 'Logout';
+            // var invisDiv = document.getElementsByClassName("admin_login");
+            // for(var i = 0; i < invisDiv.length; i++){
+            //     invisDiv[i].style.visibility = "hidden"; 
+            //     invisDiv[i].style.display = "none"; 
+            // }
+            // $("#admin_name").text(cd.email)
         }
     });
     }, function (error) {
@@ -188,6 +199,15 @@ function adminCheck(adminEmail){
     });
 }
 
+function showAdminLogout(){
+    // $( ".admin_logout" ).show();
+    document.querySelector('#admin_btn').value = 'Logout';
+}
+
+function hideAdminLogout(){
+    // $(".admin_logout").hide();
+    document.querySelector('#admin_btn').value = 'Login';
+}
 
 
 
